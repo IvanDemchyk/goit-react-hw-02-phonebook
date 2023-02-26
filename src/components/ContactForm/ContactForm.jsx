@@ -1,7 +1,8 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
-import { Formik, Form, Field } from 'formik';
+import { Formik } from 'formik';
 import PropTypes from 'prop-types';
+import { Form, FormLabel, Field, SubmitBtn } from './ContactForm.styled';
 
 export class ContactForm extends Component {
   handleSubmit = ({ name, number }, actions) => {
@@ -24,7 +25,7 @@ export class ContactForm extends Component {
         onSubmit={this.handleSubmit}
       >
         <Form autoComplete="off">
-          <label htmlFor="name">
+          <FormLabel htmlFor="name">
             Name
             <Field
               type="text"
@@ -33,13 +34,19 @@ export class ContactForm extends Component {
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
               required
             />
-          </label>
-          <label htmlFor="number">
+          </FormLabel>
+          <FormLabel htmlFor="number">
             Number
-            <Field type="tel" name="number" required />
-          </label>
+            <Field
+              type="tel"
+              name="number"
+              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+              required
+            />
+          </FormLabel>
 
-          <button type="submit">Submit</button>
+          <SubmitBtn type="submit">Submit</SubmitBtn>
         </Form>
       </Formik>
     );

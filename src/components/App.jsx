@@ -3,6 +3,9 @@ import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
 
+import { Container, MainTitle, ListTitle } from './Layout/Layout.styled';
+import { GlobalStyle } from './GlobalStyle';
+
 export class App extends Component {
   state = {
     contacts: [
@@ -52,8 +55,10 @@ export class App extends Component {
 
   render() {
     return (
-      <>
+      <Container>
+        <MainTitle>Phonebook</MainTitle>
         <ContactForm onSave={this.addContact} contacts={this.state.contacts} />
+        <ListTitle>Contacts</ListTitle>
         <Filter onFilter={this.onFilter} filter={this.state.filter} />
         <ContactList
           contacts={this.state.contacts}
@@ -61,7 +66,8 @@ export class App extends Component {
           filterContacts={this.onFilterContacts}
           onDelete={this.onDelete}
         />
-      </>
+        <GlobalStyle />
+      </Container>
     );
   }
 }
