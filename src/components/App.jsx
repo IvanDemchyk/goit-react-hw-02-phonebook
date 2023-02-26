@@ -30,18 +30,12 @@ export class App extends Component {
   };
 
   onFilterContacts = () => {
-    let filterContact = [];
-    if (this.state.filter) {
-      filterContact = this.state.contacts.filter(
-        contact =>
-          contact.name.includes(this.state.filter) ||
-          contact.name.toLowerCase().includes(this.state.filter)
-      );
-    } else {
-      return this.state.contacts;
-    }
+    const { contacts, filter } = this.state;
+    const normalizedFilter = filter.toLowerCase();
 
-    return filterContact;
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
   };
 
   onDelete = id => {
